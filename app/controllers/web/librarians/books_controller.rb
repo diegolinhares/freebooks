@@ -1,6 +1,8 @@
 module Web
   module Librarians
     class BooksController < BaseController
+      authorize :user, through: :current_librarian
+
       def index
         books = ::Book.all
 
@@ -13,6 +15,8 @@ module Web
 
       def create
         book = ::Book.new(book_params)
+
+        authorize! book
 
         if book.save
           redirect_to web_librarians_books_path, notice: "Book created"

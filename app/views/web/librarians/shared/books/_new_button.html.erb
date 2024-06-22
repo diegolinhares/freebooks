@@ -1,1 +1,3 @@
-<%= link_to("➕ New Book", new_web_librarians_book_path, title: "Add a new book") %>
+<% if allowed_to?(:create?, ::Book) %>
+  <%= link_to("➕ New Book", new_web_librarians_book_path, title: "Add a new book") %>
+<% end %>
