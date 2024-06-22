@@ -1,6 +1,8 @@
 module Web
   module Librarians
     class BooksController < BaseController
+      include ::Pagy::Backend
+
       authorize :user, through: :current_librarian
 
       def index
@@ -9,9 +11,16 @@ module Web
                       .select("authors.name AS author_name")
                       .select("genres.name AS genre_name")
 
-        books = books.search_all(params[:query]) if params[:query].present?
+        books = books.search(params[:query]) if params[:query].present?
 
-        render "web/librarians/books/index", locals: { books: }
+        case books
+        in ::Array
+          pagy, books = pagy_array(books)
+        else
+          pagy, books = pagy(books)
+        end
+
+        render "web/librarians/books/index", locals: { books:, pagy: }
       end
 
       def new
