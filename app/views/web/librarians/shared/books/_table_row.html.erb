@@ -9,9 +9,12 @@
     <%= book.genre %>
   </td>
   <td>
-    <%= book.isbn %>
-  </td>
-  <td>
-    <%= book.total_copies %>
+    <% if allowed_to?(:destroy?, ::Book) %>
+      <%= button_to "Remove", web_librarians_book_path(book),
+        method: :delete,
+        class: "outline secondary",
+        title: "Remove book",
+        data: {turbo_confirm: "Confirm book removal?"} %>
+    <% end %>
   </td>
 </tr>

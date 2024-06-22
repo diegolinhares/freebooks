@@ -27,6 +27,14 @@ module Web
         end
       end
 
+      def destroy
+        book = ::Book.find(params[:id])
+
+        book.destroy!
+
+        redirect_to web_librarians_books_path, notice: "Book deleted"
+      end
+
       private
 
       def book_params
