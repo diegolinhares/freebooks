@@ -4,7 +4,7 @@
   namespace :web, path: "" do
     namespace :librarians do
       resources :sessions, only: [:new, :create]
-      resources :books, only: [:index, :new, :create, :destroy]
+      resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
 
       root "sessions#new"
     end

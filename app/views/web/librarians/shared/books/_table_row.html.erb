@@ -1,6 +1,11 @@
 <tr>
   <td>
-    <%= book.title %>
+    <% if allowed_to?(:update?, ::Book) %>
+      <%= link_to book.title,
+          edit_web_librarians_book_path(book),
+          class: "task-row-title"
+      %>
+    <% end %>
   </td>
   <td>
     <%= book.author %>

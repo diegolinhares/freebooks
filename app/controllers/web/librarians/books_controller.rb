@@ -27,6 +27,26 @@ module Web
         end
       end
 
+      def edit
+        book = ::Book.find(params[:id])
+
+        render "web/librarians/books/edit", locals: { book: }
+      end
+
+      def update
+        book = ::Book.find(params[:id])
+
+        authorize! book
+
+        if book.update(book_params)
+          redirect_to web_librarians_books_path, notice: "Book updated"
+        else
+          render "web/librarians/books/edit",
+                 status: :unprocessable_entity,
+                 locals: {book:}
+        end
+      end
+
       def destroy
         book = ::Book.find(params[:id])
 

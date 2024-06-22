@@ -3,6 +3,10 @@ class BookPolicy < ::ApplicationPolicy
     user.librarian?
   end
 
+  def update?
+    user.librarian?
+  end
+
   def destroy?
     user.librarian?
   end
