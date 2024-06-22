@@ -1,34 +1,34 @@
 a_game_of_thrones:
   title: A Game of Thrones
-  author: George R. R. Martin
+  author: george_rr_martin
   genre: fantasy
   isbn: 978-0553103540
   total_copies: 10
 
 a_clash_of_kings:
   title: A Clash of Kings
-  author: George R. R. Martin
+  author: george_rr_martin
   genre: fantasy
   isbn: 978-0553108033
   total_copies: 8
 
 a_storm_of_swords:
   title: A Storm of Swords
-  author: George R. R. Martin
+  author: george_rr_martin
   genre: fantasy
   isbn: 978-0553106633
   total_copies: 8
 
 a_feast_for_crows:
   title: A Feast for Crows
-  author: George R. R. Martin
+  author: george_rr_martin
   genre: fantasy
   isbn: 978-0553801507
   total_copies: 7
 
 a_dance_with_dragons:
   title: A Dance with Dragons
-  author: George R. R. Martin
+  author: george_rr_martin
   genre: fantasy
   isbn: 978-0553801477
   total_copies: 9

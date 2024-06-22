@@ -3,10 +3,12 @@ class Book < ::ApplicationRecord
 
   litesearch do |schema|
     schema.field :title, weight: 5
+    schema.field :author, target: "authors.name"
     schema.field :genre, target: "genres.name"
     schema.tokenizer :porter
   end
 
+  belongs_to :author, inverse_of: :books
   belongs_to :genre, inverse_of: :books
 
   with_options presence: true do
