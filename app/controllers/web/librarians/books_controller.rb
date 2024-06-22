@@ -4,7 +4,9 @@ module Web
       authorize :user, through: :current_librarian
 
       def index
-        books = ::Book.all
+        books = ::Book.joins(:genre)
+                      .select(books: [:id, :title, :author])
+                      .select("genres.name AS genre_name")
 
         render "web/librarians/books/index", locals: { books: }
       end
@@ -58,7 +60,7 @@ module Web
       private
 
       def book_params
-        params.require(:book).permit(:title, :author, :genre, :isbn, :total_copies)
+        params.require(:book).permit(:title, :author, :genre_id, :isbn, :total_copies)
       end
     end
   end

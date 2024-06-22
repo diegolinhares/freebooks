@@ -2,29 +2,17 @@ class Book < ::ApplicationRecord
   include ::Litesearch::Model
 
   litesearch do |schema|
-    schema.fields [:title, :author, :genre]
+    schema.field :title, weight: 5
+    schema.field :genre, target: "genres.name"
     schema.tokenizer :porter
   end
 
-  GENRES = [
-    "Fantasy",
-    "Science Fiction",
-    "Mystery",
-    "Thriller",
-    "Romance",
-    "Historical Fiction",
-    "Horror",
-    "Non-fiction",
-    "Biography",
-    "Young Adult",
-    "Children",
-    "Adventure"
-  ].freeze
+  belongs_to :genre, inverse_of: :books
 
   with_options presence: true do
     validates :title
     validates :author
-    validates :genre, inclusion: { in: GENRES }
+    validates :genre
     validates :isbn, uniqueness: true
     validates :total_copies, numericality: { greater_than: 0 }
   end

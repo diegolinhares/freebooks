@@ -20,8 +20,8 @@
     </fieldset>
 
     <fieldset>
-      <%= f.label :genre %>
-      <%= f.select :genre, options_for_select(::Book::GENRES.sort) %>
+      <%= f.label :genre_id %>
+      <%= f.select :genre_id, options_for_select(::Genre.ordered.pluck(:name, :id)) %>
     </fieldset>
 
     <fieldset>

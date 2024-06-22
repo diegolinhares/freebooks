@@ -10,41 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_22_205152) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_22_211900) do
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
     t.string "author", null: false
-    t.string "genre", null: false
     t.string "isbn", null: false
     t.integer "total_copies", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "genre_id", null: false
+    t.index ["genre_id"], name: "index_books_on_genre_id"
     t.index ["isbn"], name: "index_books_on_isbn", unique: true
   end
-
-# Could not dump table "books_search_idx" because of following StandardError
-#   Unknown type '' for column 'title'
-
-# Could not dump table "books_search_idx_config" because of following StandardError
-#   Unknown type '' for column 'k'
-
-  create_table "books_search_idx_data", force: :cascade do |t|
-    t.binary "block"
-  end
-
-  create_table "books_search_idx_docsize", force: :cascade do |t|
-    t.binary "sz"
-    t.integer "origin"
-  end
-
-# Could not dump table "books_search_idx_idx" because of following StandardError
-#   Unknown type '' for column 'segid'
-
-# Could not dump table "books_search_idx_instance" because of following StandardError
-#   Unknown type '' for column 'term'
-
-# Could not dump table "books_search_idx_row" because of following StandardError
-#   Unknown type '' for column 'term'
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
@@ -62,4 +39,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_205152) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "books", "genres"
 end
