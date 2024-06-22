@@ -5,6 +5,7 @@ a_game_of_thrones:
   genre: fantasy
   isbn: 978-0553103540
   total_copies: 10
+  available_copies: 10
 
 a_clash_of_kings:
   title: A Clash of Kings
@@ -12,6 +13,7 @@ a_clash_of_kings:
   genre: fantasy
   isbn: 978-0553108033
   total_copies: 8
+  available_copies: 8
 
 a_storm_of_swords:
   title: A Storm of Swords
@@ -19,6 +21,7 @@ a_storm_of_swords:
   genre: fantasy
   isbn: 978-0553106633
   total_copies: 8
+  available_copies: 8
 
 a_feast_for_crows:
   title: A Feast for Crows
@@ -26,6 +29,7 @@ a_feast_for_crows:
   genre: fantasy
   isbn: 978-0553801507
   total_copies: 7
+  available_copies: 7
 
 a_dance_with_dragons:
   title: A Dance with Dragons
@@ -33,6 +37,7 @@ a_dance_with_dragons:
   genre: fantasy
   isbn: 978-0553801477
   total_copies: 9
+  available_copies: 9
 
 dune:
   title: Dune
@@ -40,6 +45,7 @@ dune:
   genre: science_fiction
   isbn: 978-0441013593
   total_copies: 8
+  available_copies: 8
 
 the_da_vinci_code:
   title: The Da Vinci Code
@@ -47,6 +53,7 @@ the_da_vinci_code:
   genre: mystery
   isbn: 978-0307474278
   total_copies: 7
+  available_copies: 7
 
 gone_girl:
   title: Gone Girl
@@ -54,6 +61,7 @@ gone_girl:
   genre: thriller
   isbn: 978-0307588371
   total_copies: 5
+  available_copies: 5
 
 pride_and_prejudice:
   title: Pride and Prejudice
@@ -61,6 +69,7 @@ pride_and_prejudice:
   genre: romance
   isbn: 978-1503290563
   total_copies: 12
+  available_copies: 12
 
 the_book_thief:
   title: The Book Thief
@@ -68,6 +77,7 @@ the_book_thief:
   genre: historical_fiction
   isbn: 978-0375842207
   total_copies: 6
+  available_copies: 6
 
 it:
   title: It
@@ -75,6 +85,7 @@ it:
   genre: horror
   isbn: 978-1501142970
   total_copies: 4
+  available_copies: 4
 
 sapiens:
   title: "Sapiens: A Brief History of Humankind"
@@ -82,6 +93,7 @@ sapiens:
   genre: non_fiction
   isbn: 978-0062316097
   total_copies: 10
+  available_copies: 10
 
 steve_jobs:
   title: Steve Jobs
@@ -89,6 +101,7 @@ steve_jobs:
   genre: biography
   isbn: 978-1451648539
   total_copies: 8
+  available_copies: 8
 
 the_fault_in_our_stars:
   title: The Fault in Our Stars
@@ -96,6 +109,7 @@ the_fault_in_our_stars:
   genre: young_adult
   isbn: 978-0525478812
   total_copies: 10
+  available_copies: 10
 
 charlotte_s_web:
   title: Charlotte's Web
@@ -103,6 +117,7 @@ charlotte_s_web:
   genre: children
   isbn: 978-0061124952
   total_copies: 15
+  available_copies: 15
 
 the_hobbit:
   title: The Hobbit
@@ -110,3 +125,4 @@ the_hobbit:
   genre: adventure
   isbn: 978-0547928227
   total_copies: 9
+  available_copies: 9
