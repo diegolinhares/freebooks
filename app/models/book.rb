@@ -11,6 +11,10 @@ class Book < ::ApplicationRecord
   belongs_to :author, inverse_of: :books
   belongs_to :genre, inverse_of: :books
 
+  has_many :borrowings,
+           dependent: :destroy,
+           inverse_of: :book
+
   with_options presence: true do
     validates :title
     validates :author

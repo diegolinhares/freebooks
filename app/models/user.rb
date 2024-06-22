@@ -1,6 +1,10 @@
 class User < ::ApplicationRecord
   has_secure_password
 
+  has_many :borrowings,
+           dependent: :destroy,
+           inverse_of: :user
+
   with_options presence: true do
     validates :password,
               confirmation: true,

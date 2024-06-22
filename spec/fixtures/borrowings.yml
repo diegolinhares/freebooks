@@ -1,0 +1,13 @@
+borrowing_one:
+  user: samuel_tarly
+  book: a_game_of_thrones
+  borrowed_at: <%= 1.week.ago %>
+  due_date: <%= 1.week.from_now %>
+  returned_at:
+
+borrowing_two:
+  user: samuel_tarly
+  book: dune
+  borrowed_at: <%= 2.days.ago %>
+  due_date: <%= 12.days.from_now %>
+  returned_at:
