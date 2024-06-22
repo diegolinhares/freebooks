@@ -1,0 +1,7 @@
+<% if errors.any? %>
+  <ul style="--pico-color: var(--pico-color-red-500);">
+    <% errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

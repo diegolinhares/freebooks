@@ -1,0 +1,41 @@
+<% content_for :header do %>
+  <%= render "web/librarians/shared/document_header",
+    current: "Books",
+    title: "Create a book",
+    description: "Add a new book." %>
+<% end %>
+
+<article>
+  <%= form_with(model: book, scope: :book, url: web_librarians_books_path, method: :post) do |f| %>
+    <%= render partial: "web/librarians/shared/form_errors", locals: {errors: f.object.errors} %>
+
+    <fieldset>
+      <%= f.label :title %>
+      <%= f.text_field :title, autofocus: true %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :author %>
+      <%= f.text_field :author %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :genre %>
+      <%= f.select :genre, options_for_select(::Book::GENRES.sort) %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :isbn %>
+      <%= f.text_field :isbn %>
+    </fieldset>
+
+    <fieldset>
+      <%= f.label :total_copies %>
+      <%= f.number_field :total_copies %>
+    </fieldset>
+
+    <div class="cluster">
+      <%= f.button "Submit", type: nil %>
+    </div>
+  <% end %>
+</article>
