@@ -15,8 +15,8 @@
     </fieldset>
 
     <fieldset>
-      <%= f.label :author %>
-      <%= f.text_field :author %>
+      <%= f.label :author_id %>
+      <%= f.select :author_id, options_for_select(::Author.ordered.pluck(:name, :id)) %>
     </fieldset>
 
     <fieldset>
