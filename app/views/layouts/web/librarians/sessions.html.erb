@@ -10,13 +10,9 @@
   </head>
 
   <body>
-    <%= render("layouts/web/librarians/application/header") %>
+    <%= render("layouts/web/librarians/sessions/header") %>
 
     <main class="container with-sidebar">
-      <aside role="menu" data-turbo-permanent>
-        <%= render("layouts/web/librarians/application/sidebar") %>
-      </aside>
-
       <div role="document">
         <%= yield :header %>
 
@@ -27,5 +23,5 @@
     </main>
 
     <%= render("layouts/web/shared/footer") %>
-  </body>
+    </body>
 </html>

@@ -1,6 +1,8 @@
 module Web
   module Librarians
     class SessionsController < BaseController
+      layout "web/librarians/sessions"
+
       skip_before_action :authenticate_librarian!
 
       def new
