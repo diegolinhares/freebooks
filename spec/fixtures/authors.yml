@@ -1,2 +1,35 @@
 george_rr_martin:
   name: George R. R. Martin
+
+frank_herbert:
+  name: Frank Herbert
+
+dan_brown:
+  name: Dan Brown
+
+gillian_flynn:
+  name: Gillian Flynn
+
+jane_austen:
+  name: Jane Austen
+
+markus_zusak:
+  name: Markus Zusak
+
+stephen_king:
+  name: Stephen King
+
+yuval_noah_harari:
+  name: Yuval Noah Harari
+
+walter_isaacson:
+  name: Walter Isaacson
+
+john_green:
+  name: John Green
+
+eb_white:
+  name: E.B. White
+
+jrr_tolkien:
+  name: J.R.R. Tolkien

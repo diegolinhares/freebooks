@@ -1,3 +1,4 @@
+# books
 a_game_of_thrones:
   title: A Game of Thrones
   author: george_rr_martin
@@ -31,4 +32,81 @@ a_dance_with_dragons:
   author: george_rr_martin
   genre: fantasy
   isbn: 978-0553801477
+  total_copies: 9
+
+dune:
+  title: Dune
+  author: frank_herbert
+  genre: science_fiction
+  isbn: 978-0441013593
+  total_copies: 8
+
+the_da_vinci_code:
+  title: The Da Vinci Code
+  author: dan_brown
+  genre: mystery
+  isbn: 978-0307474278
+  total_copies: 7
+
+gone_girl:
+  title: Gone Girl
+  author: gillian_flynn
+  genre: thriller
+  isbn: 978-0307588371
+  total_copies: 5
+
+pride_and_prejudice:
+  title: Pride and Prejudice
+  author: jane_austen
+  genre: romance
+  isbn: 978-1503290563
+  total_copies: 12
+
+the_book_thief:
+  title: The Book Thief
+  author: markus_zusak
+  genre: historical_fiction
+  isbn: 978-0375842207
+  total_copies: 6
+
+it:
+  title: It
+  author: stephen_king
+  genre: horror
+  isbn: 978-1501142970
+  total_copies: 4
+
+sapiens:
+  title: "Sapiens: A Brief History of Humankind"
+  author: yuval_noah_harari
+  genre: non_fiction
+  isbn: 978-0062316097
+  total_copies: 10
+
+steve_jobs:
+  title: Steve Jobs
+  author: walter_isaacson
+  genre: biography
+  isbn: 978-1451648539
+  total_copies: 8
+
+the_fault_in_our_stars:
+  title: The Fault in Our Stars
+  author: john_green
+  genre: young_adult
+  isbn: 978-0525478812
+  total_copies: 10
+
+charlotte_s_web:
+  title: Charlotte's Web
+  author: eb_white
+  genre: children
+  isbn: 978-0061124952
+  total_copies: 15
+
+the_hobbit:
+  title: The Hobbit
+  author: jrr_tolkien
+  genre: adventure
+  isbn: 978-0547928227
   total_copies: 9
