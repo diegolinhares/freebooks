@@ -1,0 +1,35 @@
+fantasy:
+  name: Fantasy
+
+science_fiction:
+  name: Science Fiction
+
+mystery:
+  name: Mystery
+
+thriller:
+  name: Thriller
+
+romance:
+  name: Romance
+
+historical_fiction:
+  name: Historical Fiction
+
+horror:
+  name: Horror
+
+non_fiction:
+  name: Non-fiction
+
+biography:
+  name: Biography
+
+young_adult:
+  name: Young Adult
+
+children:
+  name: Children
+
+adventure:
+  name: Adventure
