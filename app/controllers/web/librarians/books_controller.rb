@@ -9,6 +9,8 @@ module Web
                       .select("authors.name AS author_name")
                       .select("genres.name AS genre_name")
 
+        books = books.search_all(params[:query]) if params[:query].present?
+
         render "web/librarians/books/index", locals: { books: }
       end
 
