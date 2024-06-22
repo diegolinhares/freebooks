@@ -1,4 +1,11 @@
 class Book < ::ApplicationRecord
+  include ::Litesearch::Model
+
+  litesearch do |schema|
+    schema.fields [:title, :author, :genre]
+    schema.tokenizer :porter
+  end
+
   GENRES = [
     "Fantasy",
     "Science Fiction",
