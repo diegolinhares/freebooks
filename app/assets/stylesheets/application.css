@@ -1,1 +1,235 @@
-/* Application styles */
+/* ---------
+ * VARIABLES
+ * --------- */
+
+:root {
+  /* Pico custom colors
+   * https://picocss.com/docs/colors
+   *
+   * We are manually picking only the ones that we require.
+   */
+  --pico-color-red-500: rgb(217, 53, 38);
+  --pico-color-green-500: rgb(57, 135, 18);
+  --pico-color-slate-850: rgb(32, 38, 50);
+}
+
+/* ----------------
+ * PICO ADJUSTMENTS
+ * ---------------- */
+
+/* Remove some unnecessary margins */
+
+header>hgroup,
+table [type=submit],
+details:last-child,
+pre {
+  margin-bottom: 0;
+}
+
+/* Disable loading styles (aria-busy)
+ *
+ * They were conflicting with how rails uses aria-busy by default */
+
+[aria-busy=true][aria-busy=true] {
+  white-space: initial;
+}
+
+[aria-busy=true][aria-busy=true]::before {
+  display: none;
+}
+
+[aria-busy=true][aria-busy=true]:empty {
+  text-align: initial;
+}
+
+button[aria-busy=true][aria-busy=true],
+[type=submit][aria-busy=true][aria-busy=true],
+[type=button][aria-busy=true][aria-busy=true],
+[type=reset][aria-busy=true][aria-busy=true],
+[role=button][aria-busy=true][aria-busy=true],
+a[aria-busy=true][aria-busy=true] {
+  pointer-events: initial;
+}
+
+/* ----------
+ * PRIMITIVES
+ * ---------- */
+
+/* Stack
+ *
+ * CONTENT
+ * [gap]
+ * CONTENT
+ */
+.stack {
+  --ytk-stack-gap: var(--pico-spacing, 1rem);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack>* {
+  margin-block: 0;
+}
+
+.stack>*+* {
+  margin-block-start: var(--ytk-stack-gap);
+}
+
+/* Cluster
+ *
+ * CONTENT [gap] CONTENT [gap] CONTENT
+ */
+
+.cluster {
+  --ytk-cluster-gap: var(--pico-spacing);
+  --ytk-cluster-justify-content: flex-start;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ytk-cluster-gap);
+  justify-content: var(--ytk-cluster-justify-content);
+  align-items: center;
+}
+
+/* Centered
+ *
+ * [margin] CONTENT [margin]
+ */
+
+.centered {
+  --ytk-centered-size: 60ch;
+
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--ytk-centered-size);
+}
+
+figure {
+  --n: 16;
+  --d: 9;
+  aspect-ratio: var(--n) / var(--d);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+figure>img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* ------
+ * LAYOUT
+ * ------ */
+
+/* Sidebar */
+
+body>main.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--pico-spacing) * 2);
+}
+
+body>main.with-sidebar>[role=menu] {
+  flex-basis: 20ch;
+  flex-grow: 1;
+}
+
+body>main.with-sidebar>[role=document] {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: 70%;
+}
+
+/* Document
+ *
+ * CONTENT
+ * [gap]
+ * CONTENT
+ * [gap]
+ * CONTENT
+ */
+
+[role=document] {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: calc(var(--pico-spacing) * 2);
+}
+
+[role=document]>* {
+  margin-bottom: 0;
+}
+
+/* Footer */
+
+body>footer {
+  text-align: center;
+}
+
+/* ----------
+ * COMPONENTS
+ * ---------- */
+
+/* Toast */
+
+.toast {
+  --ytk-toast-color: var(--pico-color);
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pico-spacing);
+  color: var(--ytk-toast-color);
+}
+
+.toast--fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  box-shadow: none;
+  border: var(--pico-border-width) solid var(--pico-color-slate-850);
+  border-radius: 0;
+}
+
+.toast--notice {
+  --ytk-toast-color: var(--pico-color-green-500);
+}
+
+.toast--alert {
+  --ytk-toast-color: var(--pico-color-red-500);
+}
+
+.toast__close {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  padding: 0;
+  background-image: var(--pico-icon-close);
+  background-position: center;
+  background-size: auto 1rem;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  opacity: 0.5;
+  transition: opacity var(--pico-transition);
+}
+
+@media (min-width: 576px) {
+  .toast--fixed {
+    bottom: initial;
+    border-radius: var(--pico-border-radius);
+
+    inset-block-start: var(--pico-spacing);
+    inset-inline-start: 50%;
+    transform: translate(-50%, 0);
+    inline-size: max-content;
+    max-inline-size: calc(100% - (var(--pico-spacing) * 2));
+  }
+}
