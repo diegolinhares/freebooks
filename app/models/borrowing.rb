@@ -1,6 +1,11 @@
-class Borrowing < ApplicationRecord
+class Borrowing < ::ApplicationRecord
   belongs_to :user, inverse_of: :borrowings
   belongs_to :book, inverse_of: :borrowings
+
+  with_options presence: true do
+    validates :borrowed_at
+    validates :due_date
+  end
 
   validates :user_id,
             uniqueness: {
