@@ -1,2 +1,18 @@
-<h1>Web::Librarians::Books#index</h1>
-<p>Find me in app/views/web/librarians/books/index.html.erb</p>
+<% content_for :header do %>
+  <%= render "web/librarians/shared/document_header",
+    current: "Books",
+    title: "All",
+    description: "All books in one place."
+  %>
+<% end %>
+
+<section>
+  <% if books.present? %>
+    <%= render partial: "web/librarians/shared/books/table", locals: {books:} %>
+  <% else %>
+    <hgroup>
+      <h4>You don't have any books</h4>
+      <p>Start by adding a <%= render partial: "web/librarians/shared/books/new_button" %></p>
+    </hgroup>
+  <% end %>
+</section>

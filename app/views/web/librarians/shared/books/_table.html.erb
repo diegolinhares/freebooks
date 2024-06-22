@@ -1,0 +1,16 @@
+<div class="overflow-auto">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Genre</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Total copies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "web/librarians/shared/books/table_row", collection: books, as: :book %>
+    </tbody>
+  </table>
+</div>
