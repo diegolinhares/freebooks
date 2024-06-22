@@ -1,0 +1,11 @@
+<% password = ::BCrypt::Password.create("12341234") %>
+
+librarian:
+  email: librarian@freeboks.com
+  password_digest: <%= password %>
+  role: librarian
+
+samuel_tarly:
+  email: samuel_tarly@freeboks.com
+  password_digest: <%= password %>
+  role: member
