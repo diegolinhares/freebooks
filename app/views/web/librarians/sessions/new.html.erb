@@ -1,0 +1,20 @@
+<section>
+  <article class="centered">
+    <header>
+      <hgroup>
+        <h2>Sign in</h2>
+        <p>Enter your credentials to access your account.</p>
+      </hgroup>
+    </header>
+
+    <%= form_with(model: user, scope: :user, url: web_librarians_sessions_path, local: true) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email" %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true, autocomplete: "current-password" %>
+
+      <%= f.button "Sign in", type: nil %>
+    <% end %>
+  </article>
+</section>
