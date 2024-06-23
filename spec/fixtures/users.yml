@@ -4,7 +4,7 @@ librarian:
   email: librarian@freebooks.com
   password_digest: <%= password %>
   role: librarian
-  api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
+  api_access_token: WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9
 
 samuel_tarly:
   email: samuel_tarly@freebooks.com

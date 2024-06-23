@@ -457,3 +457,760 @@ curl -X GET http://localhost:3000/api/v1/members/books \
   "details": {}
 }
 ```
+
+## Librarians
+
+### Create Session
+
+`POST /api/v1/librarians/sessions`
+
+#### When Authenticated
+
+To avoid re-authenticating the user:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/sessions \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json" \
+-d '{
+  "user": {
+    "email": "librarian@freebooks.com",
+    "password": "12341234"
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Action not allowed for authenticated librarian",
+  "details": {}
+}
+```
+
+#### When Unauthenticated
+
+To authenticate the user when parameters are valid:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/sessions \
+-H "Content-Type: application/json" \
+-d '{
+  "user": {
+    "email": "librarian@freebooks.com",
+    "password": "12341234"
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "type": "object",
+  "data": {
+    "access_token": "newly_generated_access_token"
+  }
+}
+```
+
+To avoid authenticating the user when parameters are invalid:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/sessions \
+-H "Content-Type: application/json" \
+-d '{
+  "user": {
+    "email": "bad-email",
+    "password": "bad-pass"
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid email or password",
+  "details": {}
+}
+```
+
+### Delete Session
+
+`DELETE /api/v1/librarians/sessions`
+
+#### When Authenticated
+
+To sign out the current librarian and regenerate the API access token:
+
+```bash
+curl -X DELETE http://localhost:3000/api/v1/librarians/sessions \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success"
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X DELETE http://localhost:3000/api/v1/librarians/sessions \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Create Registration
+
+`POST /api/v1/librarians/registrations`
+
+#### When Unauthenticated
+
+To register a new librarian and return access token:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/registrations \
+-H "Content-Type: application/json" \
+-d '{
+  "user": {
+    "email": "librarian@example.com",
+    "password": "password123"
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "message": "Librarian registered successfully",
+    "access_token": "newly_generated_access_token"
+  },
+  "type": "object"
+}
+```
+
+To return errors when registration fails:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/registrations \
+-H "Content-Type: application/json" \
+-d '{
+  "user": {
+    "email": "",
+    "password": "password123"
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Failed to register librarian",
+  "details": ["Email can't be blank"]
+}
+```
+
+#### When Authenticated
+
+To disallow authenticated librarian from registering:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/registrations \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json" \
+-d '{
+  "user": {
+    "email": "librarian2@example.com",
+    "password": "password123"
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "details": {},
+  "message": "Action not allowed for authenticated librarian"
+}
+```
+
+### Get Statistics
+
+`GET /api/v1/librarians/statistics`
+
+#### When Authenticated
+
+To return dashboard statistics for the librarian:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/statistics \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "books": 17,
+    "total_borrowed_books": 13,
+    "books_due_today": 0
+  },
+  "type": "object"
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/statistics \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Get Members
+
+`GET /api/v1/librarians/members`
+
+#### When Authenticated
+
+To return paginated members with overdue books:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/members \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "members": [
+      {
+        "email": "member1@example.com"
+      },
+      {
+        "email": "member2@example.com"
+      },
+      ...
+    ]
+  },
+  "pagination": {
+    "count": 10,
+    "items": 5,
+    "next": 2,
+    "page": 1,
+    "pages": 2,
+    "prev": null
+  },
+  "type": "object"
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/members \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Get Books
+
+`GET /api/v1/librarians/books`
+
+#### When Authenticated
+
+To return paginated books for the librarian:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/books \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "type": "object",
+  "data": {
+    "books": [
+      {
+        "title": "A Feast for Crows",
+        "author_name": "George R. R. Martin",
+        "genre_name": "Fantasy"
+      },
+      {
+        "title": "Sapiens: A Brief History of Humankind",
+        "author_name": "Yuval Noah Harari",
+        "genre_name": "Non-fiction"
+      },
+      {
+        "title": "Dune",
+        "author_name": "Frank Herbert",
+        "genre_name": "Science Fiction"
+      },
+      {
+        "title": "A Dance with Dragons",
+        "author_name": "George R. R. Martin",
+        "genre_name": "Fantasy"
+      },
+      {
+        "title": "The Book Thief",
+        "author_name": "Markus Zusak",
+        "genre_name": "Historical Fiction"
+      }
+    ]
+  },
+  "pagination": {
+    "count": 17,
+    "items": 5,
+    "next": 2,
+    "page": 1,
+    "pages": 4,
+    "prev": null
+  }
+}
+```
+
+To return paginated books for the search query "Dune":
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/books?query=Dune \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "type": "object",
+  "data": {
+    "books": [
+      {
+        "title": "Dune",
+        "author_name": "Frank Herbert",
+        "genre_name": "Science Fiction"
+      }
+    ]
+  },
+  "pagination": {
+    "count": 1,
+    "items": 5,
+    "next": null,
+    "page": 1,
+    "pages": 1,
+    "prev": null
+  }
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/books \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Create Book
+
+`POST /api/v1/librarians/books`
+
+#### When Authenticated
+
+To create a book successfully:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/books \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json" \
+-d '{
+  "book": {
+    "title": "New Book",
+    "author_id": 1,
+    "genre_id": 1,
+    "isbn": "978-1234567890",
+    "total_copies": 10,
+    "available_copies": 10
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "message": "Book created",
+    "book": {
+      "title": "New Book"
+    }
+  },
+  "type": "object"
+}
+```
+
+To fail to create a book due to validation errors:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/books \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json" \
+-d '{
+  "book": {
+    "title": "",
+    "author_id": 1,
+    "genre_id": 1,
+    "isbn": "978-1234567890",
+    "total_copies": 10,
+    "available_copies": 10
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Failed to create book",
+  "details": ["Title can't be blank"]
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X POST http://localhost:3000/api/v1/librarians/books \
+-H "Content-Type: application/json" \
+-d '{
+  "book": {
+    "title": "New Book",
+    "author_id": 1,
+    "genre_id": 1,
+    "isbn": "978-1234567890",
+    "total_copies": 10,
+    "available_copies": 10
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Update Book
+
+`PUT /api/v1/librarians/books/:id`
+
+#### When Authenticated
+
+To update a book successfully:
+
+```bash
+curl -X PUT http://localhost:3000/api/v1/librarians/books/1 \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json" \
+-d '{
+  "book": {
+    "title": "Updated Book Title",
+    "author_id": 1,
+    "genre_id": 1,
+    "isbn": "978-1234567890",
+    "total_copies": 10,
+    "available_copies": 10
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "message": "Book updated",
+    "book": {
+      "title": "Updated Book Title"
+    }
+  },
+  "type": "object"
+}
+```
+
+To fail to update a book due to validation errors:
+
+```bash
+curl -X PUT http://localhost:3000/api/v1/librarians/books/1 \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json" \
+-d '{
+  "book": {
+    "title": "",
+    "author_id": 1,
+    "genre_id": 1,
+    "isbn": "978-1234567890",
+    "total_copies": 10,
+    "available_copies": 10
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Failed to update book",
+  "details": ["Title can't be blank"]
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X PUT http://localhost:3000/api/v1/librarians/books/1 \
+-H "Content-Type: application/json" \
+-d '{
+  "book": {
+    "title": "Updated Book Title",
+    "author_id": 1,
+    "genre_id": 1,
+    "isbn": "978-1234567890",
+    "total_copies": 10,
+    "available_copies": 10
+  }
+}'
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Delete Book
+
+`DELETE /api/v1/librarians/books/:id`
+
+#### When Authenticated
+
+To delete a book successfully:
+
+```bash
+curl -X DELETE http://localhost:3000/api/v1/librarians/books/1 \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success"
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X DELETE http://localhost:3000/api/v1/librarians/books/1 \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Get Member Borrowings
+
+`GET /api/v1/librarians/members/:member_id/borrowings`
+
+#### When Authenticated
+
+To return paginated borrowings for the member:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/members/1/borrowings \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "borrowings": [
+      {
+        "book_title": "Expired Book"
+      },
+      {
+        "book_title": "A Game of Thrones"
+      },
+      {
+        "book_title": "Dune"
+      }
+    ]
+  }
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X GET http://localhost:3000/api/v1/librarians/members/1/borrowings \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
+
+### Mark Book as Returned
+
+`PATCH /api/v1/librarians/borrowings/:borrowing_id/return`
+
+#### When Authenticated
+
+To mark the book as returned:
+
+```bash
+curl -X PATCH http://localhost:3000/api/v1/librarians/borrowings/1/return \
+-H "Authorization: Bearer WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9" \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "success",
+  "data": {
+    "message": "Book marked as returned."
+  },
+  "type": "object"
+}
+```
+
+#### When Unauthenticated
+
+To return unauthorized status:
+
+```bash
+curl -X PATCH http://localhost:3000/api/v1/librarians/borrowings/1/return \
+-H "Content-Type: application/json"
+```
+
+**Expected Response:**
+
+```bash
+{
+  "status": "error",
+  "message": "Invalid access token",
+  "details": {}
+}
+```
