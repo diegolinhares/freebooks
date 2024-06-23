@@ -1,4 +1,6 @@
 class User < ::ApplicationRecord
+  has_secure_token :api_access_token, length: 42
+
   has_secure_password
 
   has_many :borrowings,
