@@ -19,7 +19,7 @@ module Web
         book = ::Book.find(params[:book_id])
 
         if book.available_copies > 0
-          ::ActiveRecord::Base.transaction do
+          book.with_lock do
             borrowing = current_member.borrowings.build(
               book:,
               borrowed_at: ::Time.current,
