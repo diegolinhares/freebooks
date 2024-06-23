@@ -6,9 +6,11 @@
       namespace :librarians do
         resources :books, only: [:index, :create, :update, :destroy]
         resources :statistics, only: [:index]
-        resources :members, only: [:index]
+        resources :members, only: [:index] do
+          resources :borrowings, only: :index, controller: "members/borrowings"
+        end
         resources :borrowings, only: [] do
-          resource :return, only: :update, controller: 'borrowings/returns'
+          resource :return, only: :update, controller: "borrowings/returns"
         end
       end
 
