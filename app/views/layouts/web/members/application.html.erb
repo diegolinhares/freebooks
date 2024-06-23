@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freebooks</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "pico.amber", "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render("layouts/web/members/application/header") %>
+
+    <main class="container with-sidebar">
+      <aside role="menu" data-turbo-permanent>
+        <%= render("layouts/web/members/application/sidebar") %>
+      </aside>
+
+      <div role="document">
+        <%= yield :header %>
+
+        <%= render("layouts/web/shared/flash") %>
+
+        <%= yield %>
+      </div>
+    </main>
+
+    <%= render("layouts/web/shared/footer") %>
+  </body>
+</html>

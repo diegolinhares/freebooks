@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <%= book.title  %>
+  </td>
+  <td>
+    <%= book.author_name %>
+  </td>
+  <td>
+    <%= book.genre_name %>
+  </td>
+  <td>
+    <%= button_to "Borrow", "#",
+      method: :delete,
+      class: "outline secondary",
+      title: "Borrow book",
+      data: {turbo_confirm: "Confirm book borrow?"} %>
+  </td>
+</tr>

@@ -14,5 +14,13 @@
 
       root "dashboards#index"
     end
+
+    namespace :members do
+      resources :sessions, only: [:new, :create]
+      resource :sessions, only: [:destroy]
+      resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
+
+      root "books#index"
+    end
   end
 end

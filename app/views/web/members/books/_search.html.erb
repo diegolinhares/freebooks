@@ -1,0 +1,11 @@
+<%= form_with url: web_members_books_path, method: :get, local: true do |form| %>
+  <div class="grid">
+    <div>
+      <%= form.label :query, "Search Books" %>
+      <%= form.text_field :query,
+                          value: params[:query],
+                          placeholder: "Enter title, author, or genre"
+      %>
+    </div>
+  </div>
+<% end %>
