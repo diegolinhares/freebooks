@@ -33,3 +33,6 @@ eb_white:
 
 jrr_tolkien:
   name: J.R.R. Tolkien
+
+unknown_author:
+  name: "Unknown Author"

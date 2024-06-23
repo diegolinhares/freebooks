@@ -12,6 +12,13 @@ borrowing_two:
   due_date: <%= 12.days.from_now %>
   returned_at:
 
+borrowing_expired:
+  user: samuel_tarly
+  book: expired_book
+  borrowed_at: <%= 3.weeks.ago %>
+  due_date: <%= 2.weeks.ago %>
+  returned_at:
+
 borrowing_three:
   user: john_doe
   book: pride_and_prejudice

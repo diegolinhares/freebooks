@@ -125,3 +125,11 @@ the_hobbit:
   isbn: 978-0547928227
   total_copies: 9
   available_copies: 8
+
+expired_book:
+  title: "Expired Book"
+  isbn: "978-0000000000"
+  total_copies: 5
+  available_copies: 4
+  author: unknown_author
+  genre: fiction

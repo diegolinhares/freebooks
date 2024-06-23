@@ -33,3 +33,6 @@ children:
 
 adventure:
   name: Adventure
+
+fiction:
+  name: Fiction

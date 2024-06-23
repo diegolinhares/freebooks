@@ -1,23 +1,22 @@
 require "rails_helper"
 
-RSpec.describe ::Api::V1::Members::SessionsController, type: :request do
-  fixtures :users
-
-  let(:samuel_tarly) { users(:samuel_tarly) }
+::RSpec.describe ::Api::V1::Members::SessionsController, type: :request do
+  let(:member) { create(:user, :member) }
+  let(:api_access_token) { member.api_access_token }
 
   describe "POST /api/v1/members/sessions" do
     context "when authenticated" do
       it "doesn't re-authenticate the user" do
         params = {
           user: {
-            email: samuel_tarly.email,
+            email: member.email,
             password: "12341234"
           }
         }
 
         post api_v1_members_sessions_path,
              params:,
-             headers: { "Authorization" => "Bearer #{samuel_tarly.api_access_token}" },
+             headers: { "Authorization" => "Bearer #{api_access_token}" },
              as: :json
 
         expect(response).to have_http_status(:unauthorized)
@@ -36,7 +35,7 @@ RSpec.describe ::Api::V1::Members::SessionsController, type: :request do
       it "authenticates the user when params are valid" do
         params = {
           user: {
-            email: samuel_tarly.email,
+            email: member.email,
             password: "12341234"
           }
         }
@@ -50,7 +49,7 @@ RSpec.describe ::Api::V1::Members::SessionsController, type: :request do
         expect(body).to match(
           status: "success",
           type: "object",
-          data: hash_including(access_token: samuel_tarly.api_access_token)
+          data: hash_including(access_token: api_access_token)
         )
       end
 
