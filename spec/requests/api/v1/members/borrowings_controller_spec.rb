@@ -34,35 +34,15 @@ require "rails_helper"
                 book_title: "Dune",
                 status: "not overdue"
               )
-            ],
-            pagy: hash_including(
-              count: 3,
-              from: 1,
-              in: 3,
-              items: 5,
-              last: 1,
-              next: nil,
-              offset: 0,
-              outset: 0,
-              page: 1,
-              prev: nil,
-              to: 3,
-              vars: hash_including(
-                count: 3,
-                count_args: ["all"],
-                headers: hash_including(
-                  count: "total-count",
-                  items: "page-items",
-                  page: "current-page",
-                  pages: "total-pages"
-                ),
-                items: 5,
-                outset: 0,
-                page: 1,
-                page_param: "page",
-                size: 7
-              )
-            )
+            ]
+          },
+          pagination: {
+            count: 3,
+            items: 5,
+            next: nil,
+            page: 1,
+            pages: 1,
+            prev: nil
           }
         }
 
