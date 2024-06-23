@@ -2,7 +2,19 @@
   <nav>
     <ul>
       <li>
-        <%= link_to "Freebooks", web_members_root_path, style: "color: var(--pico-h1-color);" %>
+        <%= link_to "Freebooks",
+                    web_members_root_path,
+                    style: "color: var(--pico-h1-color);"
+        %>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        <%= link_to("Members", new_web_members_session_path) %>
+      </li>
+      <li>
+        <%= link_to("Librarians", new_web_librarians_session_path) %>
       </li>
     </ul>
   </nav>
