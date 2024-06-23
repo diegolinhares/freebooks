@@ -6,7 +6,11 @@ module Api::V1::Librarians
 
         borrowing.update!(returned_at: ::Time.current)
 
-        render_json_with_success(status: :ok, data: { message: "Book marked as returned." })
+        render_json_with_success(
+          status: :ok,
+          data: {
+            message: "Book marked as returned."
+          })
       end
     end
   end

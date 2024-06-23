@@ -13,7 +13,8 @@ module Api::V1::Librarians
           data: {
             message: "Librarian registered successfully",
             access_token: librarian.api_access_token
-          })
+          }
+        )
       else
         render_json_with_error(
           status: :unprocessable_entity,

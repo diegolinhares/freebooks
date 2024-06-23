@@ -7,13 +7,19 @@ module Api::V1::Members
     def authenticate_member!
       return if current_member
 
-      render_json_with_error(status: :unauthorized, message: "Invalid access token")
+      render_json_with_error(
+        status: :unauthorized,
+        message: "Invalid access token"
+      )
     end
 
     def disallow_authenticated_member!
       return if current_member.blank?
 
-      render_json_with_error(status: :forbidden, message: "Action not allowed for authenticated member")
+      render_json_with_error(
+        status: :forbidden,
+        message: "Action not allowed for authenticated member"
+      )
     end
 
     def current_member

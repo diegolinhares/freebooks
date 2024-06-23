@@ -11,13 +11,19 @@ module Api::V1::Librarians
     def authenticate_librarian!
       return if current_librarian
 
-      render_json_with_error(status: :unauthorized, message: "Invalid access token")
+      render_json_with_error(
+        status: :unauthorized,
+        message: "Invalid access token"
+      )
     end
 
     def disallow_authenticated_librarian!
       return if current_librarian.blank?
 
-      render_json_with_error(status: :forbidden, message: "Action not allowed for authenticated librarian")
+      render_json_with_error(
+        status: :forbidden,
+        message: "Action not allowed for authenticated librarian"
+      )
     end
 
     def current_librarian

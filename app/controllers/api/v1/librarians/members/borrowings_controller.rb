@@ -13,7 +13,13 @@ module Api::V1::Librarians
 
         pagy_headers_merge(pagy)
 
-        render_json_with_success(status: :ok, data: { borrowings: }, pagy:)
+        render_json_with_success(
+          status: :ok,
+          data: {
+            borrowings:
+          },
+          pagy:
+        )
       end
     end
   end
