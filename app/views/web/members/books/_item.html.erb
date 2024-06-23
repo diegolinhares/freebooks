@@ -9,8 +9,8 @@
     <%= book.genre_name %>
   </td>
   <td>
-    <%= button_to "Borrow", "#",
-      method: :delete,
+    <%= button_to "Borrow", web_members_book_borrowings_path(book),
+      method: :post,
       class: "outline secondary",
       title: "Borrow book",
       data: {turbo_confirm: "Confirm book borrow?"} %>

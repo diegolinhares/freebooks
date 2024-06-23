@@ -18,8 +18,10 @@
     namespace :members do
       resources :sessions, only: [:new, :create]
       resource :sessions, only: [:destroy]
-      resources :books, only: [:index]
       resources :borrowings, only: [:index]
+      resources :books, only: [:index] do
+        resources :borrowings, only: [:create]
+      end
 
       root "books#index"
     end
