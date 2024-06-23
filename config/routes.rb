@@ -17,6 +17,7 @@
 
       namespace :members do
         resource :sessions, only: [:create, :destroy]
+        resources :registrations, only: [:create]
         resources :borrowings, only: [:index]
         resources :books, only: [:index] do
           resources :borrowings, only: [:create]
