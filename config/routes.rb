@@ -5,8 +5,10 @@
     namespace :v1 do
       namespace :members do
         resource :sessions, only: [:create]
-        resources :books, only: [:index]
         resources :borrowings, only: [:index]
+        resources :books, only: [:index] do
+          resources :borrowings, only: [:create]
+        end
       end
     end
   end

@@ -86,4 +86,81 @@ require "rails_helper"
       end
     end
   end
+
+  describe "POST /api/v1/members/borrowings" do
+    let(:available_book) { books(:it) }
+    let(:unavailable_book) { books(:sapiens) }
+    let(:borrowed_book) { books(:dune) }
+
+    context "when authenticated" do
+      it "creates a borrowing successfully" do
+        post api_v1_members_book_borrowings_path(book_id: available_book.id),
+             headers: { "Authorization" => "Bearer #{api_access_token}" },
+             as: :json
+
+        expect(response).to have_http_status(:created)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "success",
+          data: {
+            message: "Book successfully borrowed."
+          },
+          type: "object"
+        )
+
+        expect(available_book.reload.available_copies).to eq(available_book.total_copies - 1)
+      end
+
+      it "fails to create a borrowing when no copies are available" do
+        post api_v1_members_book_borrowings_path(book_id: unavailable_book.id),
+             headers: { "Authorization" => "Bearer #{api_access_token}" },
+             as: :json
+
+        expect(response).to have_http_status(:unprocessable_entity)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "No available copies to borrow.",
+          details: {}
+        )
+      end
+
+      it "returns an error when the user tries to borrow a book they have already borrowed and not returned" do
+        post api_v1_members_book_borrowings_path(book_id: borrowed_book.id),
+             headers: { "Authorization" => "Bearer #{api_access_token}" },
+             as: :json
+
+        expect(response).to have_http_status(:unprocessable_entity)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Failed to borrow book",
+          details: ["User has already borrowed this book and not returned it yet"]
+        )
+      end
+    end
+
+    context "when unauthenticated" do
+      it "returns unauthorized status" do
+        post api_v1_members_book_borrowings_path(book_id: unavailable_book.id),
+             as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Invalid access token",
+          details: {}
+        )
+      end
+    end
+  end
 end

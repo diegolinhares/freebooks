@@ -84,7 +84,7 @@ it:
   genre: horror
   isbn: 978-1501142970
   total_copies: 4
-  available_copies: 3
+  available_copies: 4
 
 sapiens:
   title: "Sapiens: A Brief History of Humankind"
@@ -92,7 +92,7 @@ sapiens:
   genre: non_fiction
   isbn: 978-0062316097
   total_copies: 10
-  available_copies: 9
+  available_copies: 0
 
 steve_jobs:
   title: Steve Jobs
