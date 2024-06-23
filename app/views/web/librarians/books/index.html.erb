@@ -7,10 +7,10 @@
 <% end %>
 
 <section>
-  <%= render partial: "web/shared/books/search_form" %>
+  <%= render partial: "web/librarians/books/search" %>
 
   <% if books.present? %>
-    <%= render partial: "web/shared/books/table", locals: {books:, pagy:} %>
+    <%= render partial: "web/librarians/books/list", locals: {books:, pagy:} %>
   <% elsif ::Book.exists? %>
     <hgroup>
       <h4>No results</h4>

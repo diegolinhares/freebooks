@@ -9,7 +9,10 @@
       </tr>
     </thead>
     <tbody>
-      <%= render partial: "web/shared/books/table_row", collection: books, as: :book %>
+      <%= render partial: "web/librarians/books/item",
+                 collection: books,
+                 as: :book
+      %>
     </tbody>
   </table>
 </div>

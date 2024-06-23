@@ -1,0 +1,29 @@
+<tr>
+  <td>
+    <% if allowed_to?(:update?, ::Book) %>
+      <%= link_to book.title,
+                  edit_web_librarians_book_path(book),
+                  class: "task-row-title"
+      %>
+    <% end %>
+  </td>
+  <td>
+    <%= book.author_name %>
+  </td>
+  <td>
+    <%= book.genre_name %>
+  </td>
+  <td>
+    <% if allowed_to?(:destroy?, ::Book) %>
+      <%= button_to "Remove",
+                    web_librarians_book_path(book),
+                    method: :delete,
+                    class: "outline secondary",
+                    title: "Remove book",
+                    data: {
+                      turbo_confirm: "Confirm book removal?"
+                    }
+      %>
+    <% end %>
+  </td>
+</tr>
