@@ -17,7 +17,7 @@ module Api::V1::Librarians
     def disallow_authenticated_librarian!
       return if current_librarian.blank?
 
-      render_json_with_error(status: :unauthorized, message: "Action not allowed for authenticated librarian")
+      render_json_with_error(status: :forbidden, message: "Action not allowed for authenticated librarian")
     end
 
     def current_librarian

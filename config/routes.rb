@@ -4,6 +4,7 @@
   namespace :api do
     namespace :v1 do
       namespace :librarians do
+        resources :registrations, only: [:create]
         resources :books, only: [:index, :create, :update, :destroy]
         resources :statistics, only: [:index]
         resources :members, only: [:index] do
