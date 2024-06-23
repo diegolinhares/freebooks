@@ -1,5 +1,95 @@
 # README
 
+# Tooling
+
+## Versions
+- **Ruby**: 3.3.1
+- **Rails**: 7.1.3
+
+## Frontend
+- **Hotwire**: Includes gems `turbo-rails` and `stimulus-rails`, used to add Turbo and Stimulus functionality, respectively.
+- **Pico**: CSS framework used for web design.
+
+## Database and Storage
+- **sqlite**: Connector and adapter for SQLite database.
+- **litestack**: Used for improving SQLite, for example, full text search.
+
+## Application Features
+- **Pagy**: Lightweight and efficient pagination gem.
+- **action-policy**: Create policies for librarians.
+
+## Testing
+- **Fixtures**: Instead of FactoryBot, I've used Rails default fixtures. They were used to create the seeds too.
+- **Rspec-rails**: Testing framework for Rails.
+- **Shoulda-matchers**: Provides simplifications for testing Rails functionality.
+
+# Features Implemented
+
+- [x] Authentication and Authorization
+
+- [x] Book Management
+
+- [x] Borrowing and Returning
+
+- [x] Dashboard
+
+- [x] API Endpoints
+
+- [x] Frontend (Bonus): Implemented using Hotwire
+
+# Testing
+
+Below is a summary of the testing efforts:
+
+- [x] **Models**
+  - Comprehensive testing of all models to validate core functionality.
+
+- [x] **Integration Tests (API)**
+  - Integration testing of API functionality to ensure proper communication.
+
+## Getting Started
+
+To get started, ensure that you have the following prerequisites installed on your system:
+
+- Ruby (version 3.3.1)
+- Rails (version 7.1.3)
+
+### Setup
+
+1. Clone the repository to your local machine.
+
+```bash
+  git clone https://github.com/diegolinhares/freebooks
+```
+
+2. Navigate to the project directory.
+
+```bash
+  cd freebooks
+```
+
+3. Run the following command to set up the project, which will install dependencies, create the database, and perform necessary setup tasks.
+
+```bash
+bin/setup
+```
+
+### Running the project
+
+```bash
+bin/dev
+```
+
+This will start the development server, and you can access the application at http://localhost:3000.
+
+
+### Running tests
+```bash
+bundle exec rspec spec
+```
+
+This command will execute all the tests.
+
 # API Endpoints
 
 ## Members
