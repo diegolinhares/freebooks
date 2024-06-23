@@ -34,6 +34,18 @@ module Api::V1::Librarians
       end
     end
 
+    def update
+      book = ::Book.find(params[:id])
+
+      authorize! book
+
+      if book.update(book_params)
+        render_json_with_success(status: :ok, data: { message: "Book updated", book: })
+      else
+        render_json_with_error(status: :unprocessable_entity, message: "Failed to update book", details: book.errors.full_messages)
+      end
+    end
+
     private
 
     def book_params

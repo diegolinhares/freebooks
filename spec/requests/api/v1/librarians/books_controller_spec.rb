@@ -202,4 +202,95 @@ require "rails_helper"
       end
     end
   end
+
+  describe "PUT /api/v1/librarians/books/:id" do
+    let(:existing_book) { books(:dune) }
+
+    context "when authenticated" do
+      let(:valid_params) do
+        {
+          book: {
+            title: "Updated Book Title",
+            author_id: authors(:george_rr_martin).id,
+            genre_id: genres(:fantasy).id,
+            isbn: "978-1234567890",
+            total_copies: 10,
+            available_copies: 10
+          }
+        }
+      end
+
+      it "updates a book successfully" do
+        put api_v1_librarians_book_path(existing_book),
+            params: valid_params,
+            headers: { "Authorization" => "Bearer #{api_access_token}" },
+            as: :json
+
+        expect(response).to have_http_status(:ok)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "success",
+          data: hash_including(
+            message: "Book updated",
+            book: hash_including(
+              title: "Updated Book Title"
+            )
+          ),
+          type: "object"
+        )
+      end
+
+      it "fails to update a book due to validation errors" do
+        invalid_params = valid_params.deep_merge(book: { title: "" })
+
+        put api_v1_librarians_book_path(existing_book),
+            params: invalid_params,
+            headers: { "Authorization" => "Bearer #{api_access_token}" },
+            as: :json
+
+        expect(response).to have_http_status(:unprocessable_entity)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Failed to update book",
+          details: array_including("Title can't be blank")
+        )
+      end
+    end
+
+    context "when unauthenticated" do
+      let(:valid_params) do
+        {
+          book: {
+            title: "Updated Book Title",
+            author_id: authors(:george_rr_martin).id,
+            genre_id: genres(:fantasy).id,
+            isbn: "978-1234567890",
+            total_copies: 10,
+            available_copies: 10
+          }
+        }
+      end
+
+      it "returns unauthorized status" do
+        put api_v1_librarians_book_path(existing_book),
+            params: valid_params,
+            as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Invalid access token",
+          details: {}
+        )
+      end
+    end
+  end
 end
