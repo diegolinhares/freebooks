@@ -5,6 +5,7 @@
     namespace :librarians do
       resources :dashboards, only: [:index]
       resources :sessions, only: [:new, :create]
+      resource :sessions, only: [:destroy]
       resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :borrowings, only: [:update]
       resources :users, only: [:index] do
