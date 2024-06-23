@@ -26,3 +26,6 @@ group :development do
   gem "web-console"
 end
 
+group :test do
+  gem 'shoulda-matchers', '~> 6.0'
+end
