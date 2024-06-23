@@ -1,0 +1,17 @@
+<tr>
+  <td>
+    <%= borrowing.id %>
+  </td>
+  <td>
+    <%= borrowing.book_title %>
+  </td>
+  <td>
+    <%= button_to "Return",
+                  web_librarians_borrowing_path(borrowing),
+                  method: :put,
+                  class: "outline secondary",
+                  title: "Return book",
+                  data: {turbo_confirm: "Confirm book return?"}
+    %>
+  </td>
+</tr>

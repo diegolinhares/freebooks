@@ -1,5 +1,8 @@
 <tr>
   <td>
-    <%= member.email %>
+    <%= link_to member.email,
+                web_librarians_user_borrowings_path(member),
+                class: "task-row-title"
+    %>
   </td>
 </tr>

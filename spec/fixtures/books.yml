@@ -1,11 +1,10 @@
-# books
 a_game_of_thrones:
   title: A Game of Thrones
   author: george_rr_martin
   genre: fantasy
   isbn: 978-0553103540
   total_copies: 10
-  available_copies: 10
+  available_copies: 9
 
 a_clash_of_kings:
   title: A Clash of Kings
@@ -45,7 +44,7 @@ dune:
   genre: science_fiction
   isbn: 978-0441013593
   total_copies: 8
-  available_copies: 8
+  available_copies: 7
 
 the_da_vinci_code:
   title: The Da Vinci Code
@@ -53,7 +52,7 @@ the_da_vinci_code:
   genre: mystery
   isbn: 978-0307474278
   total_copies: 7
-  available_copies: 7
+  available_copies: 6
 
 gone_girl:
   title: Gone Girl
@@ -61,7 +60,7 @@ gone_girl:
   genre: thriller
   isbn: 978-0307588371
   total_copies: 5
-  available_copies: 5
+  available_copies: 4
 
 pride_and_prejudice:
   title: Pride and Prejudice
@@ -69,7 +68,7 @@ pride_and_prejudice:
   genre: romance
   isbn: 978-1503290563
   total_copies: 12
-  available_copies: 12
+  available_copies: 11
 
 the_book_thief:
   title: The Book Thief
@@ -77,7 +76,7 @@ the_book_thief:
   genre: historical_fiction
   isbn: 978-0375842207
   total_copies: 6
-  available_copies: 6
+  available_copies: 5
 
 it:
   title: It
@@ -85,7 +84,7 @@ it:
   genre: horror
   isbn: 978-1501142970
   total_copies: 4
-  available_copies: 4
+  available_copies: 3
 
 sapiens:
   title: "Sapiens: A Brief History of Humankind"
@@ -93,7 +92,7 @@ sapiens:
   genre: non_fiction
   isbn: 978-0062316097
   total_copies: 10
-  available_copies: 10
+  available_copies: 9
 
 steve_jobs:
   title: Steve Jobs
@@ -101,7 +100,7 @@ steve_jobs:
   genre: biography
   isbn: 978-1451648539
   total_copies: 8
-  available_copies: 8
+  available_copies: 7
 
 the_fault_in_our_stars:
   title: The Fault in Our Stars
@@ -109,7 +108,7 @@ the_fault_in_our_stars:
   genre: young_adult
   isbn: 978-0525478812
   total_copies: 10
-  available_copies: 10
+  available_copies: 9
 
 charlotte_s_web:
   title: Charlotte's Web
@@ -117,7 +116,7 @@ charlotte_s_web:
   genre: children
   isbn: 978-0061124952
   total_copies: 15
-  available_copies: 15
+  available_copies: 14
 
 the_hobbit:
   title: The Hobbit
@@ -125,4 +124,4 @@ the_hobbit:
   genre: adventure
   isbn: 978-0547928227
   total_copies: 9
-  available_copies: 9
+  available_copies: 8

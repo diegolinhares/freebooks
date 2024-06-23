@@ -4,9 +4,12 @@
   namespace :web, path: "" do
     namespace :librarians do
       resources :dashboards, only: [:index]
-      resources :users, only: [:index]
       resources :sessions, only: [:new, :create]
       resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :borrowings, only: [:update]
+      resources :users, only: [:index] do
+        resources :borrowings, only: [:index], module: "users"
+      end
 
       root "dashboards#index"
     end
