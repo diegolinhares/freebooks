@@ -4,7 +4,7 @@
   namespace :api do
     namespace :v1 do
       namespace :librarians do
-        resources :books, only: [:index, :create, :update]
+        resources :books, only: [:index, :create, :update, :destroy]
       end
 
       namespace :members do

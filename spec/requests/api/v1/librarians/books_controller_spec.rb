@@ -293,4 +293,36 @@ require "rails_helper"
       end
     end
   end
+
+  describe "DELETE /api/v1/librarians/books/:id" do
+    let(:existing_book) { books(:dune) }
+
+    context "when authenticated" do
+      it "deletes a book successfully" do
+        delete api_v1_librarians_book_path(existing_book),
+               headers: { "Authorization" => "Bearer #{api_access_token}" },
+               as: :json
+
+        expect(response).to have_http_status(:no_content)
+        expect { existing_book.reload }.to raise_error(::ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "when unauthenticated" do
+      it "returns unauthorized status" do
+        delete api_v1_librarians_book_path(existing_book),
+               as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Invalid access token",
+          details: {}
+        )
+      end
+    end
+  end
 end

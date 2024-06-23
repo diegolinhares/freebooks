@@ -46,6 +46,16 @@ module Api::V1::Librarians
       end
     end
 
+    def destroy
+      book = ::Book.find(params[:id])
+
+      authorize! book
+
+      book.destroy!
+
+      render_json_with_success(status: :no_content)
+    end
+
     private
 
     def book_params
