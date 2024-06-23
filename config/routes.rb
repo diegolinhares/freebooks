@@ -51,5 +51,7 @@
 
       root "books#index"
     end
+
+    root "members/sessions#new"
   end
 end
