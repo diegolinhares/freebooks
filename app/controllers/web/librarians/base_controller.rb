@@ -1,7 +1,7 @@
 module Web
   module Librarians
     class BaseController < ::ApplicationController
-      layout "web/librarians/application"
+      layout "web/application"
 
       authorize :user, through: :current_librarian
 

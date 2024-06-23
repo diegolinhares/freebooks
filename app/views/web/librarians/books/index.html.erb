@@ -1,5 +1,5 @@
 <% content_for :header do %>
-  <%= render "web/librarians/shared/document_header",
+  <%= render "web/shared/document_header",
     current: "Books",
     title: "All",
     description: "All books in one place."
@@ -7,10 +7,10 @@
 <% end %>
 
 <section>
-  <%= render partial: "web/librarians/shared/books/search_form" %>
+  <%= render partial: "web/shared/books/search_form" %>
 
   <% if books.present? %>
-    <%= render partial: "web/librarians/shared/books/table", locals: {books:, pagy:} %>
+    <%= render partial: "web/shared/books/table", locals: {books:, pagy:} %>
   <% elsif ::Book.exists? %>
     <hgroup>
       <h4>No results</h4>
@@ -19,7 +19,7 @@
   <% else %>
     <hgroup>
       <h4>You don't have any books</h4>
-      <p>Start by adding a <%= render partial: "web/librarians/shared/books/new_button" %></p>
+      <p>Start by adding a <%= render partial: "web/shared/books/new_button" %></p>
     </hgroup>
   <% end %>
 </section>
