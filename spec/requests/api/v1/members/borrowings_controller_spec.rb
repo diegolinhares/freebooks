@@ -67,7 +67,7 @@ require "rails_helper"
     end
   end
 
-  describe "POST /api/v1/members/borrowings" do
+  describe "POST /api/v1/members/books/:book_id/borrowings" do
     let(:available_book) { books(:it) }
     let(:unavailable_book) { books(:sapiens) }
     let(:borrowed_book) { books(:dune) }

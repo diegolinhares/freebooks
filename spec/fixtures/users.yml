@@ -10,7 +10,7 @@ samuel_tarly:
   email: samuel_tarly@freebooks.com
   password_digest: <%= password %>
   role: member
-  api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
+  api_access_token: fD7WoV9ZH4qii8KsvwmNKUbSVfsm79rtjwuxgKuCae
 
 john_doe:
   email: john_doe@freebooks.com
