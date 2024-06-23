@@ -5,7 +5,7 @@ class Book < ::ApplicationRecord
     schema.field :title, weight: 5
     schema.field :author, target: "authors.name"
     schema.field :genre, target: "genres.name"
-    schema.tokenizer :porter
+    schema.tokenizer :trigram
   end
 
   belongs_to :author, inverse_of: :books
