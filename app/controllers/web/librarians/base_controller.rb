@@ -1,7 +1,7 @@
 module Web
   module Librarians
     class BaseController < ::ApplicationController
-      layout "web/application"
+      layout "web/librarians/application"
 
       authorize :user, through: :current_librarian
 
@@ -26,7 +26,15 @@ module Web
       def authenticate_librarian!
         return if current_librarian
 
-        redirect_to new_web_librarians_session_path, alert: "You need to sign in before continuing."
+        redirect_to new_web_librarians_session_path,
+                    alert: "You need to sign in before continuing."
+      end
+
+      def disallow_authenticated_librarian!
+        return if current_librarian.blank?
+
+        redirect_to web_librarians_root_path,
+                    alert: "Action not allowed for authenticated librarian."
       end
     end
   end

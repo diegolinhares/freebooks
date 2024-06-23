@@ -13,10 +13,6 @@
     <%= render("layouts/web/application/header") %>
 
     <main class="container with-sidebar">
-      <aside role="menu" data-turbo-permanent>
-        <%= render("layouts/web/application/sidebar") %>
-      </aside>
-
       <div role="document">
         <%= yield :header %>
 
@@ -27,5 +23,5 @@
     </main>
 
     <%= render("layouts/web/shared/footer") %>
-  </body>
+    </body>
 </html>

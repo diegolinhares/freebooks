@@ -1,9 +1,11 @@
 module Web
   module Librarians
     class SessionsController < BaseController
-      layout "web/sessions"
+      layout "web/application"
 
       skip_before_action :authenticate_librarian!, only: [:new, :create]
+
+      before_action :disallow_authenticated_librarian!, only: [:new, :create]
       before_action :authenticate_librarian!, only: [:destroy]
 
       def new
@@ -19,7 +21,7 @@ module Web
         if user&.librarian?
           sign_in(user)
 
-          redirect_to web_librarians_books_path, notice: "You have successfully signed in!"
+          redirect_to web_librarians_root_path, notice: "You have successfully signed in!"
         else
           flash.now[:alert] = "Invalid email or password"
 

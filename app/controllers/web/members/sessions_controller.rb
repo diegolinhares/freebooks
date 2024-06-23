@@ -1,9 +1,11 @@
 module Web
   module Members
     class SessionsController < BaseController
-      layout "web/sessions"
+      layout "web/application"
 
       skip_before_action :authenticate_member!, only: [:new, :create]
+
+      before_action :disallow_authenticated_member!, only: [:new, :create]
       before_action :authenticate_member!, only: [:destroy]
 
       def new
@@ -19,7 +21,8 @@ module Web
         if user&.member?
           sign_in(user)
 
-          redirect_to web_members_books_path, notice: "You have successfully signed in!"
+          redirect_to web_members_books_path,
+                      notice: "You have successfully signed in!"
         else
           flash.now[:alert] = "Invalid email or password"
 
@@ -34,7 +37,8 @@ module Web
       def destroy
         sign_out
 
-        redirect_to web_members_root_path, notice: "You have successfully signed out!"
+        redirect_to web_members_root_path,
+                    notice: "You have successfully signed out!"
       end
 
       private

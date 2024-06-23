@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Freeboks</title>
+    <title>Freebooks - Librarians</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,9 +10,13 @@
   </head>
 
   <body>
-    <%= render("layouts/web/sessions/header") %>
+    <%= render("layouts/web/librarians/application/header") %>
 
     <main class="container with-sidebar">
+      <aside role="menu" data-turbo-permanent>
+        <%= render("layouts/web/librarians/application/sidebar") %>
+      </aside>
+
       <div role="document">
         <%= yield :header %>
 
@@ -23,5 +27,5 @@
     </main>
 
     <%= render("layouts/web/shared/footer") %>
-    </body>
+  </body>
 </html>

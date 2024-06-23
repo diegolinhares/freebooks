@@ -26,7 +26,15 @@ module Web
       def authenticate_member!
         return if current_member
 
-        redirect_to new_web_members_session_path, alert: "You need to sign in before continuing."
+        redirect_to new_web_members_session_path,
+                    alert: "You need to sign in before continuing."
+      end
+
+      def disallow_authenticated_member!
+        return if current_member.blank?
+
+        redirect_to web_members_root_path,
+                    alert: "Action not allowed for authenticated member."
       end
     end
   end
