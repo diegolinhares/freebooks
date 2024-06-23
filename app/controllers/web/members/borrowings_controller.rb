@@ -3,12 +3,20 @@ module Web
     class BorrowingsController < BaseController
       include ::Pagy::Backend
 
+      BY_STATUS = <<-SQL
+        CASE
+          WHEN due_date < datetime('now') THEN 'overdue'
+          ELSE 'not overdue'
+        END AS status
+      SQL
+
+      private_constant :BY_STATUS
+
       def index
         borrowings = ::Borrowing.joins(:book)
-                                .where(user: current_member)
-                                .select(:id, :due_date)
-                                .select("books.title AS book_title")
-                                .select("CASE WHEN due_date < datetime('now') THEN 'overdue' ELSE 'not overdue' END AS status")
+                                .where(user: current_member, returned_at: nil)
+                                .select(:id, :due_date, "books.title AS book_title")
+                                .select(BY_STATUS)
 
         pagy, borrowings = pagy(borrowings)
 
@@ -29,13 +37,16 @@ module Web
             if borrowing.save
               book.decrement!(:available_copies)
 
-              redirect_to web_members_root_path, notice: 'Book successfully borrowed.'
+              redirect_to web_members_root_path,
+                          notice: "Book successfully borrowed."
             else
-              redirect_to web_members_root_path, alert: borrowing.errors.full_messages.first
+              redirect_to web_members_root_path,
+                          alert: borrowing.errors.full_messages.first
             end
           end
         else
-          redirect_to web_members_root_path, alert: 'No available copies to borrow.'
+          redirect_to web_members_root_path,
+                      alert: "No available copies to borrow."
         end
       end
     end

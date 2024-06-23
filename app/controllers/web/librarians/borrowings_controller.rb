@@ -14,7 +14,8 @@ module Web
           end
         end
 
-        redirect_to web_librarians_members_path, notice: "The book was returned."
+        redirect_to web_librarians_members_path,
+                    notice: "The book was returned."
       end
     end
   end

@@ -7,8 +7,7 @@ module Web
         def index
           borrowings = ::Borrowing.joins(:book)
                                   .where(user_id: params[:member_id])
-                                  .select(:id)
-                                  .select("books.title AS book_title")
+                                  .select(:id, "books.title AS book_title")
                                   .active
 
           pagy, borrowings = pagy(borrowings)
