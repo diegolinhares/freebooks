@@ -1,6 +1,6 @@
 module Web
   module Librarians
-    class BorrowingsController < BaseController
+    class UsersController < BaseController
       include ::Pagy::Backend
 
       def index
@@ -8,7 +8,7 @@ module Web
 
         pagy, members = pagy(members)
 
-        render "web/librarians/borrowings/index",
+        render "web/librarians/users/index",
               locals: {
                 pagy:,
                 members:
