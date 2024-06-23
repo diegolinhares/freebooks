@@ -29,7 +29,7 @@
 
   namespace :web, path: "" do
     namespace :librarians do
-      resources :dashboards, only: [:index]
+      resources :statistics, only: [:index]
       resources :sessions, only: [:new, :create]
       resource :sessions, only: [:destroy]
       resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -38,7 +38,7 @@
         resources :borrowings, only: [:index], module: "members"
       end
 
-      root "dashboards#index"
+      root "statistics#index"
     end
 
     namespace :members do
