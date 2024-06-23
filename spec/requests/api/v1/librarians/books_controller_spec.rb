@@ -113,4 +113,93 @@ require "rails_helper"
       end
     end
   end
+
+  describe "POST /api/v1/librarians/books" do
+    context "when authenticated" do
+      let(:valid_params) do
+        {
+          book: {
+            title: "New Book",
+            author_id: authors(:george_rr_martin).id,
+            genre_id: genres(:fantasy).id,
+            isbn: "978-1234567890",
+            total_copies: 10,
+            available_copies: 10
+          }
+        }
+      end
+
+      it "creates a book successfully" do
+        post api_v1_librarians_books_path,
+             params: valid_params,
+             headers: { "Authorization" => "Bearer #{api_access_token}" },
+             as: :json
+
+        expect(response).to have_http_status(:created)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "success",
+          data: hash_including(
+            message: "Book created",
+            book: hash_including(
+              title: "New Book"
+            )
+          ),
+          type: "object"
+        )
+      end
+
+      it "fails to create a book due to validation errors" do
+        invalid_params = valid_params.deep_merge(book: { title: "" })
+
+        post api_v1_librarians_books_path,
+             params: invalid_params,
+             headers: { "Authorization" => "Bearer #{api_access_token}" },
+             as: :json
+
+        expect(response).to have_http_status(:unprocessable_entity)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Failed to create book",
+          details: array_including("Title can't be blank")
+        )
+      end
+    end
+
+    context "when unauthenticated" do
+      let(:valid_params) do
+        {
+          book: {
+            title: "New Book",
+            author_id: authors(:george_rr_martin).id,
+            genre_id: genres(:fantasy).id,
+            isbn: "978-1234567890",
+            total_copies: 10,
+            available_copies: 10
+          }
+        }
+      end
+
+      it "returns unauthorized status" do
+        post api_v1_librarians_books_path,
+             params: valid_params,
+             as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Invalid access token",
+          details: {}
+        )
+      end
+    end
+  end
 end

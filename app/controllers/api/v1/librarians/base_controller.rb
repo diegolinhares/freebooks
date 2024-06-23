@@ -1,6 +1,10 @@
 module Api::V1::Librarians
   class BaseController < ::Api::V1::BaseController
+    include ::ActionPolicy::Controller
+
     before_action :authenticate_librarian!
+
+    authorize :user, through: :current_librarian
 
     protected
 

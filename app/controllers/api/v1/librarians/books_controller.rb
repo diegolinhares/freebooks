@@ -21,5 +21,23 @@ module Api::V1::Librarians
 
       render_json_with_success(status: :ok, data: {books:}, pagy:)
     end
+
+    def create
+      book = ::Book.new(book_params)
+
+      authorize! book
+
+      if book.save
+        render_json_with_success(status: :created, data: { message: "Book created", book: })
+      else
+        render_json_with_error(status: :unprocessable_entity, message: "Failed to create book", details: book.errors.full_messages)
+      end
+    end
+
+    private
+
+    def book_params
+      params.require(:book).permit(:title, :author_id, :genre_id, :isbn, :total_copies, :available_copies)
+    end
   end
 end
