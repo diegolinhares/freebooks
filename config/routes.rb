@@ -6,6 +6,7 @@
       namespace :librarians do
         resources :books, only: [:index, :create, :update, :destroy]
         resources :statistics, only: [:index]
+        resources :members, only: [:index]
       end
 
       namespace :members do
