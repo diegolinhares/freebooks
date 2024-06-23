@@ -79,4 +79,42 @@ require "rails_helper"
       end
     end
   end
+
+   describe "DELETE /api/v1/members/sessions" do
+    context "when authenticated" do
+      it "signs out the current member and regenerates the api_access_token" do
+        delete api_v1_members_sessions_path,
+               headers: { "Authorization" => "Bearer #{api_access_token}" },
+               as: :json
+
+        expect(response).to have_http_status(:ok)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "success"
+        )
+
+        member.reload
+
+        expect(member.api_access_token).not_to eq(api_access_token)
+      end
+    end
+
+    context "when unauthenticated" do
+      it "returns unauthorized status" do
+        delete api_v1_members_sessions_path, as: :json
+
+        expect(response).to have_http_status(:unauthorized)
+
+        body = ::JSON.parse(response.body).deep_symbolize_keys
+
+        expect(body).to match(
+          status: "error",
+          message: "Invalid access token",
+          details: {}
+        )
+      end
+    end
+  end
 end
