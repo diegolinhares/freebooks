@@ -3,10 +3,12 @@
 
   namespace :web, path: "" do
     namespace :librarians do
+      resources :dashboards, only: [:index]
+      resources :borrowings, only: [:index]
       resources :sessions, only: [:new, :create]
       resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
 
-      root "sessions#new"
+      root "dashboards#index"
     end
   end
 end

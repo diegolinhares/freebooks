@@ -1,0 +1,17 @@
+<div class="overflow-auto">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "web/librarians/borrowings/member",
+                 collection: members,
+                 as: :member
+      %>
+    </tbody>
+  </table>
+</div>
+
+<%== pagy_nav(pagy) %>

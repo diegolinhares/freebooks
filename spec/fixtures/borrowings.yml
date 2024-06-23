@@ -11,3 +11,73 @@ borrowing_two:
   borrowed_at: <%= 2.days.ago %>
   due_date: <%= 12.days.from_now %>
   returned_at:
+
+borrowing_three:
+  user: john_doe
+  book: pride_and_prejudice
+  borrowed_at: <%= 3.weeks.ago %>
+  due_date: <%= 1.week.ago %>
+  returned_at:
+
+borrowing_four:
+  user: jane_doe
+  book: it
+  borrowed_at: <%= 2.weeks.ago %>
+  due_date: <%= 3.days.ago %>
+  returned_at:
+
+borrowing_five:
+  user: michael_smith
+  book: the_book_thief
+  borrowed_at: <%= 4.weeks.ago %>
+  due_date: <%= 2.weeks.ago %>
+  returned_at:
+
+borrowing_six:
+  user: emily_johnson
+  book: the_da_vinci_code
+  borrowed_at: <%= 3.weeks.ago %>
+  due_date: <%= 1.week.ago %>
+  returned_at:
+
+borrowing_seven:
+  user: william_brown
+  book: the_hobbit
+  borrowed_at: <%= 5.weeks.ago %>
+  due_date: <%= 3.weeks.ago %>
+  returned_at:
+
+borrowing_eight:
+  user: ava_davis
+  book: gone_girl
+  borrowed_at: <%= 2.weeks.ago %>
+  due_date: <%= 4.days.ago %>
+  returned_at:
+
+borrowing_nine:
+  user: oliver_miller
+  book: charlotte_s_web
+  borrowed_at: <%= 4.weeks.ago %>
+  due_date: <%= 1.week.ago %>
+  returned_at:
+
+borrowing_ten:
+  user: isabella_wilson
+  book: sapiens
+  borrowed_at: <%= 6.weeks.ago %>
+  due_date: <%= 3.weeks.ago %>
+  returned_at:
+
+borrowing_eleven:
+  user: liam_moore
+  book: steve_jobs
+  borrowed_at: <%= 1.month.ago %>
+  due_date: <%= 2.weeks.ago %>
+  returned_at:
+
+borrowing_twelve:
+  user: sophia_taylor
+  book: the_fault_in_our_stars
+  borrowed_at: <%= 3.weeks.ago %>
+  due_date: <%= 1.week.ago %>
+  returned_at:

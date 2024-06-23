@@ -9,3 +9,53 @@ samuel_tarly:
   email: samuel_tarly@freeboks.com
   password_digest: <%= password %>
   role: member
+
+john_doe:
+  email: john_doe@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+jane_doe:
+  email: jane_doe@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+michael_smith:
+  email: michael_smith@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+emily_johnson:
+  email: emily_johnson@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+william_brown:
+  email: william_brown@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+ava_davis:
+  email: ava_davis@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+oliver_miller:
+  email: oliver_miller@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+isabella_wilson:
+  email: isabella_wilson@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+liam_moore:
+  email: liam_moore@freeboks.com
+  password_digest: <%= password %>
+  role: member
+
+sophia_taylor:
+  email: sophia_taylor@freeboks.com
+  password_digest: <%= password %>
+  role: member

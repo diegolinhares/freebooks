@@ -13,4 +13,8 @@ class Borrowing < ::ApplicationRecord
               conditions: -> { where(returned_at: nil) },
               message: "has already borrowed this book and not returned it yet"
             }
+
+  scope :active, -> { where(returned_at: nil) }
+
+  scope :due_today, -> { where(due_date: ::Date.today) }
 end

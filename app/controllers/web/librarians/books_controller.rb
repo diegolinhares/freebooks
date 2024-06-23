@@ -3,8 +3,6 @@ module Web
     class BooksController < BaseController
       include ::Pagy::Backend
 
-      authorize :user, through: :current_librarian
-
       def index
         books = ::Book.joins(:author, :genre)
                       .select(books: [:id, :title])

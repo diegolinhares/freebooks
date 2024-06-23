@@ -3,6 +3,8 @@ module Web
     class BaseController < ::ApplicationController
       layout "web/librarians/application"
 
+      authorize :user, through: :current_librarian
+
       before_action :authenticate_librarian!
 
       private

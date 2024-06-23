@@ -1,0 +1,28 @@
+<% content_for :header do %>
+  <%= render "web/librarians/shared/document_header",
+    current: "Dashboard",
+    title: "Dashboard",
+    description: "Summarized data for you."
+  %>
+<% end %>
+
+<section class="grid">
+  <article>
+    <header>
+      <h5>Books</h5>
+    </header>
+    <p><%= books %></p>
+  </article>
+  <article>
+    <header>
+      <h5>Borrowed Books</h5>
+    </header>
+    <p><%= total_borrowed_books %></p>
+  </article>
+  <article>
+    <header>
+      <h5>Books Due Today</h5>
+    </header>
+    <p><%= books_due_today %></p>
+  </article>
+</section>
