@@ -7,6 +7,9 @@
         resources :books, only: [:index, :create, :update, :destroy]
         resources :statistics, only: [:index]
         resources :members, only: [:index]
+        resources :borrowings, only: [] do
+          resource :return, only: :update, controller: 'borrowings/returns'
+        end
       end
 
       namespace :members do
