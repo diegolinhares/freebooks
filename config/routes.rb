@@ -34,8 +34,8 @@
       resource :sessions, only: [:destroy]
       resources :books, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :borrowings, only: [:update]
-      resources :users, only: [:index] do
-        resources :borrowings, only: [:index], module: "users"
+      resources :members, only: [:index] do
+        resources :borrowings, only: [:index], module: "members"
       end
 
       root "dashboards#index"

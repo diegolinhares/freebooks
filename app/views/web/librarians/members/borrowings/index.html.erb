@@ -8,7 +8,7 @@
 
 <section>
   <% if borrowings.present? %>
-    <%= render partial: "web/librarians/users/borrowings/members",
+    <%= render partial: "web/librarians/members/borrowings/list",
                locals: { borrowings:, pagy: }
     %>
   <% else %>

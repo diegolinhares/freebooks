@@ -17,7 +17,15 @@
             Account
           </summary>
           <ul>
-            <li><%= link_to("Log out", web_librarians_sessions_path, data: { turbo_method: :delete }, class: "secondary") %></li>
+            <li>
+              <%= link_to "Log out",
+                          web_librarians_sessions_path,
+                          data: {
+                            turbo_method: :delete
+                          },
+                          class: "secondary"
+              %>
+            </li>
           </ul>
         </details>
       </li>

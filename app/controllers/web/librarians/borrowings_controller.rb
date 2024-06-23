@@ -9,10 +9,12 @@ module Web
 
           book = borrowing.book
 
-          book.increment!(:available_copies) if book.available_copies < book.total_copies
+          if book.available_copies < book.total_copies
+            book.increment!(:available_copies)
+          end
         end
 
-        redirect_to web_librarians_users_path
+        redirect_to web_librarians_members_path, notice: "The book was returned."
       end
     end
   end

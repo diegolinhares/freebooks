@@ -1,19 +1,19 @@
 module Web
   module Librarians
-    module Users
+    module Members
       class BorrowingsController < BaseController
         include ::Pagy::Backend
 
         def index
           borrowings = ::Borrowing.joins(:book)
-                                  .where(user_id: params[:user_id])
+                                  .where(user_id: params[:member_id])
                                   .select(:id)
                                   .select("books.title AS book_title")
                                   .active
 
           pagy, borrowings = pagy(borrowings)
 
-          render "web/librarians/users/borrowings/index",
+          render "web/librarians/members/borrowings/index",
                 locals: {
                   pagy:,
                   borrowings:
