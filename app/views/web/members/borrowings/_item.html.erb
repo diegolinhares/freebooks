@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <%= borrowing.book_title  %>
+  </td>
+  <td>
+    <%= ::I18n.l(borrowing.due_date, format: :short) %>
+  </td>
+  <td>
+    <%= borrowing.status %>
+  </td>
+</tr>

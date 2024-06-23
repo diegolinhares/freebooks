@@ -1,0 +1,18 @@
+<% content_for :header do %>
+  <%= render "web/shared/document_header",
+    current: "Borrowings",
+    title: "All",
+    description: "All borrowings in one place."
+  %>
+<% end %>
+
+<section>
+  <% if borrowings.present? %>
+    <%= render partial: "web/members/borrowings/list", locals: {borrowings:, pagy:} %>
+  <% else %>
+    <hgroup>
+      <h4>No results</h4>
+      <p>Try to refine your search</p>
+    </hgroup>
+  <% end %>
+</section>
