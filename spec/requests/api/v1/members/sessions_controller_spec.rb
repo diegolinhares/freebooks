@@ -1,7 +1,9 @@
 require "rails_helper"
 
 ::RSpec.describe ::Api::V1::Members::SessionsController, type: :request do
-  let(:member) { create(:user, :member) }
+  fixtures :users
+
+  let(:member) { users(:samuel_tarly) }
   let(:api_access_token) { member.api_access_token }
 
   describe "POST /api/v1/members/sessions" do
@@ -19,7 +21,7 @@ require "rails_helper"
              headers: { "Authorization" => "Bearer #{api_access_token}" },
              as: :json
 
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(:forbidden)
 
         body = ::JSON.parse(response.body).deep_symbolize_keys
 

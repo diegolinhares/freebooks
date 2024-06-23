@@ -28,11 +28,6 @@ require "rails_helper"
                 genre_name: "Fantasy"
               ),
               hash_including(
-                title: "Sapiens: A Brief History of Humankind",
-                author_name: "Yuval Noah Harari",
-                genre_name: "Non-fiction"
-              ),
-              hash_including(
                 title: "Dune",
                 author_name: "Frank Herbert",
                 genre_name: "Science Fiction"
@@ -46,11 +41,16 @@ require "rails_helper"
                 title: "The Book Thief",
                 author_name: "Markus Zusak",
                 genre_name: "Historical Fiction"
+              ),
+              hash_including(
+                title: "Gone Girl",
+                author_name: "Gillian Flynn",
+                genre_name: "Thriller"
               )
             ]
           },
           pagination: {
-            count: 17,
+            count: 16,
             items: 5,
             next: 2,
             page: 1,
