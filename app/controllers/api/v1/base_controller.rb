@@ -4,7 +4,7 @@ module Api::V1
 
     protected
 
-    def render_json_with_success(status:, data: nil)
+    def render_json_with_success(status:, data: nil, pagy: nil)
       return head(:no_content) if status == :no_content
 
       json = {status: :success}
@@ -15,6 +15,17 @@ module Api::V1
       end
 
       json[:data] = data if data
+
+      if pagy
+        json[:pagination] = {
+          count: pagy.count,
+          items: pagy.items,
+          page: pagy.page,
+          pages: pagy.pages,
+          next: pagy.next,
+          prev: pagy.prev
+        }
+      end
 
       render status:, json:
     end
