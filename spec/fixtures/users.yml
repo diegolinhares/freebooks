@@ -1,73 +1,73 @@
 <% password = ::BCrypt::Password.create("12341234") %>
 
 librarian:
-  email: librarian@freeboks.com
+  email: librarian@freebooks.com
   password_digest: <%= password %>
   role: librarian
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 samuel_tarly:
-  email: samuel_tarly@freeboks.com
+  email: samuel_tarly@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 john_doe:
-  email: john_doe@freeboks.com
+  email: john_doe@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 jane_doe:
-  email: jane_doe@freeboks.com
+  email: jane_doe@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 michael_smith:
-  email: michael_smith@freeboks.com
+  email: michael_smith@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 emily_johnson:
-  email: emily_johnson@freeboks.com
+  email: emily_johnson@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 william_brown:
-  email: william_brown@freeboks.com
+  email: william_brown@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 ava_davis:
-  email: ava_davis@freeboks.com
+  email: ava_davis@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 oliver_miller:
-  email: oliver_miller@freeboks.com
+  email: oliver_miller@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 isabella_wilson:
-  email: isabella_wilson@freeboks.com
+  email: isabella_wilson@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 liam_moore:
-  email: liam_moore@freeboks.com
+  email: liam_moore@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
 
 sophia_taylor:
-  email: sophia_taylor@freeboks.com
+  email: sophia_taylor@freebooks.com
   password_digest: <%= password %>
   role: member
   api_access_token: <%= User.generate_unique_secure_token(length: 42) %>
