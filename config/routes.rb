@@ -3,6 +3,10 @@
 
   namespace :api do
     namespace :v1 do
+      namespace :librarians do
+        resources :books, only: [:index]
+      end
+
       namespace :members do
         resource :sessions, only: [:create]
         resources :borrowings, only: [:index]
