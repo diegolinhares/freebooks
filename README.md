@@ -105,6 +105,80 @@ bundle exec rspec spec
 
 This command will execute all the tests.
 
+# Database
+
+```mermaid
+erDiagram
+    USERS {
+        string email PK "unique"
+        string password_digest
+        string role
+        string api_access_token PK "unique"
+        datetime created_at
+        datetime updated_at
+    }
+
+    AUTHORS {
+        string name PK "unique"
+        datetime created_at
+        datetime updated_at
+    }
+
+    GENRES {
+        string name PK "unique"
+        datetime created_at
+        datetime updated_at
+    }
+
+    BOOKS {
+        string title
+        string isbn PK "unique"
+        int total_copies
+        int available_copies
+        int genre_id FK
+        int author_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    BORROWINGS {
+        int user_id FK
+        int book_id FK
+        datetime borrowed_at
+        datetime due_date
+        datetime returned_at
+        datetime created_at
+        datetime updated_at
+    }
+
+    USERS ||--o{ BORROWINGS : "has many"
+    BOOKS ||--o{ BORROWINGS : "has many"
+    AUTHORS ||--o{ BOOKS : "writes"
+    GENRES ||--o{ BOOKS : "categorizes"
+```
+
+## Indexes
+
+- **Authors Table:**
+  - Unique index on `name`
+
+- **Books Table:**
+  - Index on `genre_id`
+  - Index on `author_id`
+  - Unique index on `isbn`
+
+- **Borrowings Table:**
+  - Index on `user_id`
+  - Index on `book_id`
+  - Unique index on `user_id` and `book_id` where `returned_at` is NULL
+
+- **Genres Table:**
+  - Unique index on `name`
+
+- **Users Table:**
+  - Unique index on `email`
+  - Unique index on `api_access_token`
+
 # API Endpoints
 
 ## Members
