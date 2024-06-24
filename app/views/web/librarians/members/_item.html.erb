@@ -1,8 +1,13 @@
 <tr>
   <td>
-    <%= link_to member.email,
-                web_librarians_member_borrowings_path(member),
-                class: "task-row-title"
+    <%= member.email %>
+  </td>
+  <td>
+    <%= button_to "Show",
+                  web_librarians_member_borrowings_path(member),
+                  method: :get,
+                  class: "outline secondary",
+                  title: "Show member"
     %>
   </td>
 </tr>
