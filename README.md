@@ -105,6 +105,34 @@ bundle exec rspec spec
 
 This command will execute all the tests.
 
+# Solution
+
+### Overview
+
+This project is divided into two contexts: Web and API. For both contexts, we have a "BackOffice" for members and another for librarians.
+
+The controllers in each context handle authentication and authorization by role.
+
+### Implementation
+
+Some actions were basic CRUD operations. I didn't see the need to create services, use cases, or orchestrators. I used the controllers themselves as orchestrators, leveraging the expressiveness of Ruby/Rails.
+
+### Book Borrowing
+
+When a user attempts to borrow a book, I considered that, as a system with a lot of writes, it would be beneficial to use a pessimistic lock. This locks a book while a user is attempting to borrow it, helping to maintain the correct number of available books in a distributed environment. I created a specific attribute for this and compare it with the total number of books that exist.
+
+An interesting challenge was ensuring that members can borrow a book only if it's available and cannot borrow the same book multiple times simultaneously. To solve this, I created a unique index in the database using a constraint and also added a validation at the application level:
+
+```ruby
+t.index ["user_id", "book_id"], name: "unique_borrowing_index", unique: true, where: "returned_at IS NULL"
+```
+
+### Book Search
+Another challenge of this project was the search functionality for books by title, author, or genre. To address this, I used the full-text search feature with trigrams from SQLite, using the Litesearch functionality from the Litestack gem. For pagination, I combined the results with the Pagy gem.
+
+### Fixtures and Seeds
+Typically, when using RSpec, you use Factory Bot to create data. However, I preferred to use fixtures and implemented a seed strategy to have the same data in both development and test environments. You can see how this strategy works in the seeds.rb file.
+
 # Database
 
 ```mermaid
