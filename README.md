@@ -1,5 +1,9 @@
 # README
 
+Welcome to Freebooks!
+
+You can check the application running in [this video](https://youtu.be/Cx2iWVKnxkM).
+
 # Tooling
 
 ## Versions
