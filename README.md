@@ -82,6 +82,21 @@ bin/dev
 
 This will start the development server, and you can access the application at http://localhost:3000.
 
+### Seed Data
+
+The following user credentials are available for testing:
+
+#### Librarian
+- **Email:** librarian@freebooks.com
+- **Password:** 12341234
+- **Role:** librarian
+- **API Access Token:** WJDTXRjAxKoZ8WLxKKmjudLUEUMbzKP3g727QHsqY9
+
+#### Member
+- **Email:** samuel_tarly@freebooks.com
+- **Password:** 12341234
+- **Role:** member
+- **API Access Token:** fD7WoV9ZH4qii8KsvwmNKUbSVfsm79rtjwuxgKuCae
 
 ### Running tests
 ```bash
