@@ -70,7 +70,7 @@ module Web
       private
 
       def book_params
-        params.require(:book).permit(:title, :author, :genre_id, :isbn, :total_copies)
+        params.require(:book).permit(:title, :author_id, :genre_id, :isbn, :total_copies)
       end
     end
   end
