@@ -4,7 +4,7 @@
 
 ## Versions
 - **Ruby**: 3.3.1
-- **Rails**: 7.1.3
+- **Rails**: 7.2.0.beta2
 
 ## Frontend
 - **Hotwire**: Includes gems `turbo-rails` and `stimulus-rails`, used to add Turbo and Stimulus functionality, respectively.
@@ -52,7 +52,7 @@ Below is a summary of the testing efforts:
 To get started, ensure that you have the following prerequisites installed on your system:
 
 - Ruby (version 3.3.1)
-- Rails (version 7.1.3)
+- Rails (version 7.2.0.beta2)
 
 ### Setup
 
