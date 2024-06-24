@@ -38,6 +38,10 @@
         resources :borrowings, only: [:index], module: "members"
       end
 
+      resources :borrowings, only: [] do
+        resource :return, only: :update, controller: "borrowings/returns"
+      end
+
       root "statistics#index"
     end
 

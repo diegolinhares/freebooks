@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.3.1"
 
-gem "rails", "~> 7.1.3", ">= 7.1.3.4"
+gem "rails", "~> 7.2.0.beta2"
 gem "action_policy"
 gem "bcrypt"
 gem "propshaft"

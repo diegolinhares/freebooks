@@ -2,6 +2,18 @@ module Api::V1
   class BaseController < ActionController::API
     include ::ActionController::HttpAuthentication::Token::ControllerMethods
 
+    rescue_from StandardError do |exception|
+      Rails.error.report(exception, source: "api/v1")
+
+      message = Rails.env.production? ? "Internal Server Error" : exception.message
+
+      render_json_with_error(status: :internal_server_error, message:)
+    end
+
+    rescue_from ActionController::ParameterMissing do |exception|
+      render_json_with_error(status: :bad_request, message: exception.message)
+    end
+
     protected
 
     def render_json_with_success(status:, data: nil, pagy: nil)
