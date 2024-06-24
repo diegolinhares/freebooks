@@ -23,11 +23,4 @@ class User < ::ApplicationRecord
     librarian: "librarian",
     member: "member"
   }
-
-  scope :with_overdue_books, -> {
-    joins(:borrowings)
-      .where("borrowings.due_date < ? AND borrowings.returned_at IS NULL", ::Date.today)
-      .where(role: "member")
-      .distinct
-  }
 end

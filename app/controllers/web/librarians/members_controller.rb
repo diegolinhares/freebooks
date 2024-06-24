@@ -4,7 +4,12 @@ module Web
       include ::Pagy::Backend
 
       def index
-        members = ::User.with_overdue_books
+        members = ::User.joins(:borrowings)
+                        .where('borrowings.due_date < ?', ::Date.today)
+                        .where(borrowings: { returned_at: nil })
+                        .where(role: :member)
+                        .distinct
+                        .select(:id, :email)
 
         pagy, members = pagy(members)
 

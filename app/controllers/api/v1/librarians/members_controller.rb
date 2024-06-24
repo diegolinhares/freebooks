@@ -3,7 +3,12 @@ module Api::V1::Librarians
     include ::Pagy::Backend
 
     def index
-      members = ::User.select(:id, :email).with_overdue_books
+      members = ::User.joins(:borrowings)
+                       .where('borrowings.due_date < ?', ::Date.today)
+                       .where(borrowings: { returned_at: nil })
+                       .where(role: :member)
+                       .distinct
+                       .select(:id, :email)
 
       pagy, members = pagy_array(members)
 
