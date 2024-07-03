@@ -2,6 +2,8 @@
 
 Welcome to Freebooks!
 
+**Spoiler:** Some frontend resources were extracted from the [Yataska](https://github.com/yataska) project.
+
 You can check the application running in [this video](https://youtu.be/Cx2iWVKnxkM).
 
 # Tooling
